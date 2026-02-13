@@ -6,8 +6,8 @@ document.getElementById("loader").style.display="none";
 };
 
 /* MULTI EXPAND */
-function toggle(id){
-document.getElementById(id).classList.toggle("show");
+function toggleAccordion(card){
+card.classList.toggle("active");
 }
 
 /* CURSOR RF */
@@ -107,3 +107,4 @@ requestAnimationFrame(drawSatellite);
 }
 
 drawSatellite();
+
