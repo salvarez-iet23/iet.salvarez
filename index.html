@@ -3,192 +3,107 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Samuel Álvarez | Telecom Engineer</title>
+<title>NOC Dashboard | Samuel Álvarez</title>
 
 <link rel="stylesheet" href="styles.css">
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div id="loader">
-<div class="loader-text">Inicializando Sistema...</div>
-</div>
+<!-- LOADER -->
+<div id="loader">Conectando al NOC...</div>
 
 <canvas id="networkCanvas"></canvas>
 <canvas id="satelliteCanvas"></canvas>
 
 <div class="rf-cursor"></div>
 
-<header class="hero">
+<!-- DASHBOARD -->
+<div class="dashboard">
 
-<div class="hero-content">
+<!-- SIDEBAR -->
+<aside class="sidebar">
 
-<div class="hero-text">
+<img src="FotoPerfil.jpg" class="profile">
 
-<h1>Samuel Álvarez López</h1>
+<h2>Samuel Álvarez</h2>
+<p>Telecom Engineer</p>
 
-<p>Ingeniero en Electrónica y Telecomunicaciones</p>
-<p>IoT • Redes • LPWAN • 5G • Automatización</p>
-
-<div class="hero-buttons">
 <a class="btn" href="CV.Samuel Alvarez Actualizado.pdf" target="_blank">Ver CV</a>
-<a class="btn linkedin"
-href="https://www.linkedin.com/in/samuel-alvarez-lopez-099151315/"
-target="_blank">LinkedIn</a>
-</div>
 
-</div>
+</aside>
 
-<img src="FotoPerfil.jpg" class="profile-pic">
+<!-- PANEL CENTRAL -->
+<main class="main-panel">
 
-</div>
-
-</header>
-
-<!-- EXPERIENCIA -->
-<section>
-<h2>Experiencia Profesional</h2>
+<h1>Centro de Operaciones de Red</h1>
 
 <div class="logo-grid">
 
-<div class="logo-card" onclick="toggleAccordion(this)">
+<div class="logo-card" onclick="toggleCard(this)">
 <img src="LogoIneel.png">
 <h3>INEEL</h3>
 
-<div class="accordion-content">
+<div class="card-info">
 <ul>
-<li>Desarrollo IoT Sigfox.</li>
-<li>Implementación telemetría remota.</li>
-<li>Diseño nodos inalámbricos bajo consumo.</li>
-<li>Desarrollo plataformas monitoreo.</li>
+<li>IoT Sigfox</li>
+<li>Telemetría LPWAN</li>
+<li>Plataformas monitoreo</li>
 </ul>
 </div>
+
 </div>
 
-<div class="logo-card" onclick="toggleAccordion(this)">
+<div class="logo-card" onclick="toggleCard(this)">
 <img src="LogoMtcenter.png">
 <h3>MTCENTER</h3>
 
-<div class="accordion-content">
+<div class="card-info">
 <ul>
-<li>Administración CRM.</li>
-<li>Soporte redes LAN/IP.</li>
-<li>Capacitación técnica usuarios.</li>
-<li>Generación dashboards métricas.</li>
+<li>CRM empresarial</li>
+<li>Soporte LAN/IP</li>
+<li>Dashboards métricos</li>
 </ul>
 </div>
+
 </div>
 
-<div class="logo-card" onclick="toggleAccordion(this)">
+<div class="logo-card" onclick="toggleCard(this)">
 <img src="LogoMundo.png">
-<h3>Grupo Mundo Comunicaciones</h3>
+<h3>Grupo Mundo</h3>
 
-<div class="accordion-content">
+<div class="card-info">
 <ul>
-<li>Mantenimiento sistemas radio.</li>
-<li>Configuración audio profesional.</li>
-<li>Streaming y transmisión IP.</li>
+<li>Transmisiones IP</li>
+<li>Sistemas radio</li>
+<li>Audio profesional</li>
 </ul>
 </div>
+
 </div>
 
-<div class="logo-card" onclick="toggleAccordion(this)">
+<div class="logo-card" onclick="toggleCard(this)">
 <img src="logoAalcuadrado.png">
 <h3>A² Solutions</h3>
 
-<div class="accordion-content">
+<div class="card-info">
 <ul>
-<li>Instalación CCTV.</li>
-<li>Redes Mesh.</li>
-<li>Cableado estructurado.</li>
-<li>Domótica e IoT residencial.</li>
+<li>CCTV</li>
+<li>Redes Mesh</li>
+<li>Domótica</li>
 </ul>
 </div>
-</div>
 
-</div>
-</section>
-
-<!-- EDUCACION -->
-<section>
-<h2>Formación Académica</h2>
-
-<div class="logo-grid">
-
-<div class="logo-card" onclick="toggleAccordion(this)">
-<img src="LogoUpemor.png">
-<h3>UPEMOR</h3>
-
-<div class="accordion-content">
-<ul>
-<li>Implementación red 5G SA.</li>
-<li>Simulación radioenlaces microondas.</li>
-<li>Migración telefonía VoIP.</li>
-<li>Automatización PLC Omron.</li>
-</ul>
-</div>
-</div>
-
-<div class="logo-card" onclick="toggleAccordion(this)">
-<img src="LogoCOBAEM.png">
-<h3>COBAEM</h3>
-
-<div class="accordion-content">
-<p>Bachillerato Física Matemática</p>
-</div>
 </div>
 
 </div>
-</section>
 
-<!-- HABILIDADES COMPLETAS -->
-<section>
-<h2>Habilidades</h2>
+</main>
 
-<h3>Habilidades Profesionales</h3>
-<ul>
-<li>Trabajo en equipo</li>
-<li>Liderazgo</li>
-<li>Resolución problemas</li>
-<li>Adaptabilidad</li>
-</ul>
-
-<h3>Habilidades Técnicas</h3>
-<ul>
-<li>Redes TCP/IP</li>
-<li>RF y radioenlaces</li>
-<li>IoT y LPWAN</li>
-<li>Automatización PLC</li>
-</ul>
-
-<h3>Software</h3>
-<ul>
-<li>Wireshark</li>
-<li>Proteus</li>
-<li>KiCad</li>
-<li>TIA Portal</li>
-<li>Radio Mobile</li>
-<li>AutoCAD</li>
-</ul>
-
-<h3>Idiomas</h3>
-<ul>
-<li>Español — Nativo</li>
-<li>Inglés — B1</li>
-</ul>
-
-</section>
-
-<footer>
-<p>© 2026 Samuel Álvarez</p>
-</footer>
+</div>
 
 <script src="telecom.js"></script>
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-<script>AOS.init();</script>
 
 </body>
 </html>
