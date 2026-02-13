@@ -1,76 +1,244 @@
-body{
-font-family:Arial;
+/* ===== RESET ===== */
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family: 'Segoe UI', sans-serif;
 color:white;
 background:black;
+overflow-x:hidden;
 }
 
-.section{
-padding:80px 20px;
-max-width:900px;
-margin:auto;
+/* ===== LOADER ===== */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:24px;
+z-index:9999;
+color:#00eaff;
+letter-spacing:2px;
 }
 
-.profile-pic{
-width:160px;
-height:160px;
-border-radius:50%;
-object-fit:cover;
-}
-
+/* ===== NAVBAR ===== */
 #navbar{
 position:fixed;
 top:0;
 width:100%;
-background:#000a;
-padding:10px;
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
+padding:15px;
 text-align:center;
 z-index:1000;
+border-bottom:1px solid rgba(0,255,255,0.2);
 }
 
 #navbar a{
 color:white;
-margin:10px;
+margin:15px;
 text-decoration:none;
+font-weight:500;
+transition:0.3s;
 }
 
+#navbar a:hover,
+#navbar a.active{
+color:#00eaff;
+}
+
+/* ===== SECCIONES ===== */
+.section{
+padding:100px 25px;
+max-width:900px;
+margin:auto;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== TITULOS ===== */
+.section h2{
+margin-bottom:30px;
+font-size:28px;
+color:#00eaff;
+border-left:4px solid #00eaff;
+padding-left:15px;
+}
+
+/* ===== PERFIL ===== */
+.profile-pic{
+width:180px;
+height:180px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid #00eaff;
+box-shadow:0 0 20px #00eaff55;
+margin-bottom:20px;
+}
+
+.hero-buttons{
+margin-top:20px;
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.btn{
+padding:12px 20px;
+border-radius:8px;
+background:#00eaff;
+color:black;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 15px #00eaff;
+}
+
+.linkedin{
+background:#0077b5;
+color:white;
+}
+
+.contacto{
+background:#25D366;
+color:white;
+}
+
+/* ===== PERFIL PROFESIONAL ===== */
+.perfil-text{
+line-height:1.7;
+opacity:0.9;
+}
+
+/* ===== ACORDEONES ===== */
+.accordion-container{
+display:flex;
+flex-direction:column;
+gap:20px;
+}
+
+.accordion-card{
+background:rgba(20,20,20,0.8);
+border-radius:12px;
+overflow:hidden;
+border:1px solid rgba(0,255,255,0.15);
+transition:0.4s;
+}
+
+.accordion-card:hover{
+transform:translateY(-4px);
+box-shadow:0 0 15px rgba(0,255,255,0.2);
+}
+
+/* HEADER */
 .accordion-header{
 display:flex;
+align-items:center;
 gap:20px;
+padding:18px;
 cursor:pointer;
-background:#111;
-padding:10px;
-border-radius:10px;
-margin-top:15px;
 }
 
 .accordion-header img{
-width:60px;
-height:60px;
+width:65px;
+height:65px;
 object-fit:contain;
+background:white;
+border-radius:8px;
+padding:5px;
 }
 
+.accordion-header h3{
+font-size:18px;
+}
+
+.accordion-header p{
+font-size:14px;
+opacity:0.7;
+}
+
+/* BODY */
 .accordion-body{
 display:none;
-padding:10px;
-background:#0c0c0c;
-border-radius:10px;
+padding:20px;
+border-top:1px solid rgba(255,255,255,0.1);
 }
 
 .accordion-card.active .accordion-body{
 display:block;
+animation:fadeIn 0.6s ease;
 }
 
+/* ===== LISTAS ===== */
 .clean-list{
 list-style:none;
-padding:0;
 }
 
-#wifi-cursor{
+.clean-list li{
+padding:8px 0;
+border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+/* ===== FORMULARIO ===== */
+form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+input, textarea{
+padding:12px;
+border-radius:6px;
+border:none;
+background:#111;
+color:white;
+}
+
+button{
+padding:12px;
+border:none;
+background:#00eaff;
+color:black;
+font-weight:bold;
+border-radius:6px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+box-shadow:0 0 15px #00eaff;
+}
+
+/* ===== CURSOR WIFI ===== */
+.wifi-cursor{
 position:fixed;
-width:20px;
-height:20px;
-border:2px solid cyan;
+width:25px;
+height:25px;
+border:2px solid #00eaff;
 border-radius:50%;
 pointer-events:none;
+z-index:999;
+transition:0.05s;
+}
+
+/* ===== CANVAS BACKGROUND ===== */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
