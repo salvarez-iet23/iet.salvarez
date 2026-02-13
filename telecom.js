@@ -1,17 +1,17 @@
 /* LOADER */
-window.onload = () => {
+window.onload=()=>{
 setTimeout(()=>{
 document.getElementById("loader").style.display="none";
-},2000);
+},1800);
 };
 
-/* MULTI EXPAND */
-function toggleAccordion(card){
+/* MULTI CARDS */
+function toggleCard(card){
 card.classList.toggle("active");
 }
 
 /* CURSOR RF */
-const cursor = document.querySelector(".rf-cursor");
+const cursor=document.querySelector(".rf-cursor");
 
 document.addEventListener("mousemove",e=>{
 cursor.style.left=e.clientX+"px";
@@ -20,8 +20,8 @@ cursor.style.top=e.clientY+"px";
 
 /* NETWORK BACKGROUND */
 
-const net = document.getElementById("networkCanvas");
-const ctx = net.getContext("2d");
+const net=document.getElementById("networkCanvas");
+const ctx=net.getContext("2d");
 
 net.width=window.innerWidth;
 net.height=window.innerHeight;
@@ -56,6 +56,7 @@ ctx.fill();
 
 for(let i=0;i<nodes.length;i++){
 for(let j=i;j<nodes.length;j++){
+
 let dx=nodes[i].x-nodes[j].x;
 let dy=nodes[i].y-nodes[j].y;
 let dist=Math.sqrt(dx*dx+dy*dy);
@@ -75,10 +76,10 @@ requestAnimationFrame(drawNetwork);
 
 drawNetwork();
 
-/* SATELITE ANIMADO */
+/* SATELITE */
 
-const sat = document.getElementById("satelliteCanvas");
-const satCtx = sat.getContext("2d");
+const sat=document.getElementById("satelliteCanvas");
+const satCtx=sat.getContext("2d");
 
 sat.width=window.innerWidth;
 sat.height=window.innerHeight;
@@ -89,22 +90,20 @@ function drawSatellite(){
 
 satCtx.clearRect(0,0,sat.width,sat.height);
 
-let x = sat.width/2 + Math.cos(angle)*300;
-let y = sat.height/2 + Math.sin(angle)*200;
+let x=sat.width/2+Math.cos(angle)*300;
+let y=sat.height/2+Math.sin(angle)*200;
 
 satCtx.fillStyle="white";
-satCtx.fillRect(x,y,20,10);
+satCtx.fillRect(x,y,22,10);
 
-/* señal */
 satCtx.beginPath();
 satCtx.arc(x+10,y+5,50,0,Math.PI*2);
-satCtx.strokeStyle="rgba(0,195,255,0.2)";
+satCtx.strokeStyle="rgba(0,195,255,0.25)";
 satCtx.stroke();
 
-angle+=0.005;
+angle+=0.004;
 
 requestAnimationFrame(drawSatellite);
 }
 
 drawSatellite();
-
