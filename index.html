@@ -3,17 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samuel Álvarez | Portafolio</title>
+<title>Samuel Álvarez | Telecom Engineer</title>
 
 <link rel="stylesheet" href="styles.css">
-
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 </head>
 
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+<div class="loader-text">Inicializando Sistema...</div>
+</div>
+
 <canvas id="networkCanvas"></canvas>
+<canvas id="satelliteCanvas"></canvas>
+
+<!-- CURSOR RF -->
+<div class="rf-cursor"></div>
 
 <header class="hero">
 
@@ -24,7 +32,6 @@
 <h1>Samuel Álvarez López</h1>
 
 <p>Ingeniero en Electrónica y Telecomunicaciones</p>
-
 <p>IoT • Redes • LPWAN • 5G • Automatización</p>
 
 <div class="hero-buttons">
@@ -45,26 +52,9 @@ target="_blank">LinkedIn</a>
 
 </header>
 
-<!-- SOBRE MI -->
+<!-- EXPERIENCIA -->
 <section data-aos="fade-up">
-<h2>Perfil Profesional</h2>
-
-<p>
-Ingeniero recién egresado en Electrónica y Telecomunicaciones, con una fuerte
-inclinación hacia el aprendizaje continuo y la aplicación práctica del
-conocimiento. Mi formación combina experiencia en infraestructura de redes ,
-soluciones IoT y sistemas de automatización , adquirida tanto en proyectos
-académicos como en entornos laborales reales. Soy una persona proactiva,
-adaptable y con gran capacidad para asimilar nuevas tecnologías rápidamente.
-Busco integrarme a un equipo dinámico donde pueda contribuir con mis
-habilidades técnicas, crecer profesionalmente y participar en proyectos
-innovadores que conecten el mundo físico con el digital.
-</p>
-</section>
-
-<!-- EXPERIENCIA LABORAL -->
-<section data-aos="fade-up">
-<h2>Experiencia Laboral</h2>
+<h2>Experiencia Profesional</h2>
 
 <div class="logo-grid">
 
@@ -85,99 +75,40 @@ innovadores que conecten el mundo físico con el digital.
 
 <div class="logo-card" onclick="toggle('aalcuadrado')">
 <img src="logoAalcuadrado.png">
-<h3>A al Cuadrado</h3>
+<h3>A² Solutions</h3>
 </div>
 
 </div>
 
 <div id="ineel" class="hidden-content">
 <ul>
-<li>Proyecto IoT Sigfox para telemetría.</li>
-<li>Desarrollo web para monitoreo.</li>
-<li>Optimización de nodos LPWAN.</li>
+<li>Desarrollo IoT Sigfox.</li>
+<li>Telemetría remota.</li>
+<li>Optimización nodos LPWAN.</li>
 </ul>
 </div>
 
 <div id="mtcenter" class="hidden-content">
 <ul>
-<li>Coordinación de call center.</li>
-<li>Administración CRM.</li>
-<li>Configuración redes LAN.</li>
+<li>Gestión CRM.</li>
+<li>Soporte redes LAN.</li>
+<li>Capacitación usuarios.</li>
 </ul>
 </div>
 
 <div id="mundo" class="hidden-content">
 <ul>
-<li>Mantenimiento sistemas radio.</li>
-<li>Configuración audio profesional.</li>
-<li>Transmisiones IP en vivo.</li>
+<li>Mantenimiento radio y audio profesional.</li>
+<li>Streaming IP.</li>
 </ul>
 </div>
 
 <div id="aalcuadrado" class="hidden-content">
 <ul>
-<li>Instalación CCTV e IoT.</li>
-<li>Redes Mesh y enlaces inalámbricos.</li>
-<li>Cableado estructurado TIA/EIA.</li>
+<li>Instalación CCTV.</li>
+<li>Redes Mesh.</li>
+<li>Cableado estructurado.</li>
 </ul>
-</div>
-
-</section>
-
-<!-- FORMACION -->
-<section data-aos="fade-up">
-<h2>Formación Académica</h2>
-
-<div class="logo-grid">
-
-<div class="logo-card" onclick="toggle('upemor')">
-<img src="LogoUpemor.png">
-<h3>UPEMOR</h3>
-</div>
-
-<div class="logo-card" onclick="toggle('cobaem')">
-<img src="LogoCOBAEM.png">
-<h3>COBAEM</h3>
-</div>
-
-</div>
-
-<div id="upemor" class="hidden-content">
-<ul>
-<li>Implementación red 5G SA con SDR.</li>
-<li>Simulación radioenlaces microondas.</li>
-<li>Migración telefonía VoIP.</li>
-<li>Control industrial HMI + PLC Omron.</li>
-</ul>
-</div>
-
-<div id="cobaem" class="hidden-content">
-<p>Bachillerato Física Matemática.</p>
-</div>
-
-</section>
-
-<!-- HABILIDADES -->
-<section data-aos="fade-up">
-<h2>Habilidades</h2>
-
-<div class="skills">
-
-<div>
-<h3>Técnicas</h3>
-<p>TCP/IP, RF, IoT, Microondas, PCB, PLC, SDR.</p>
-</div>
-
-<div>
-<h3>Software</h3>
-<p>Wireshark, Proteus, KiCad, TIA Portal, Radio Mobile, AutoCAD.</p>
-</div>
-
-<div>
-<h3>Idiomas</h3>
-<p>Español Nativo | Inglés B1</p>
-</div>
-
 </div>
 
 </section>
@@ -186,20 +117,10 @@ innovadores que conecten el mundo físico con el digital.
 <p>© 2026 Samuel Álvarez</p>
 </footer>
 
-<script>
-function toggle(id){
-const el = document.getElementById(id);
-el.classList.toggle("show");
-}
-</script>
-
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>AOS.init({duration:1000});</script>
 
-<script>
-AOS.init({duration:1000});
-</script>
-
-<script src="network.js"></script>
+<script src="telecom.js"></script>
 
 </body>
 </html>
