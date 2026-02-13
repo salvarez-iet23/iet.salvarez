@@ -9,7 +9,8 @@
 
 <body>
 
-<!-- HERO -->
+<div id="particles-js"></div>
+
 <header class="hero">
 
 <div class="hero-text">
@@ -28,7 +29,6 @@
 
 </header>
 
-<!-- PERFIL -->
 <section>
 <h2>Sobre mí</h2>
 <p>
@@ -38,7 +38,6 @@ automatización industrial y despliegue de infraestructura de red.
 </p>
 </section>
 
-<!-- EXPERIENCIA -->
 <section>
 <h2>Experiencia Profesional</h2>
 
@@ -68,7 +67,6 @@ automatización industrial y despliegue de infraestructura de red.
 
 </section>
 
-<!-- EDUCACION -->
 <section>
 <h2>Formación Académica</h2>
 
@@ -88,7 +86,6 @@ automatización industrial y despliegue de infraestructura de red.
 
 </section>
 
-<!-- HABILIDADES -->
 <section>
 <h2>Habilidades Técnicas</h2>
 
@@ -105,6 +102,36 @@ automatización industrial y despliegue de infraestructura de red.
 <footer>
 <p>© 2026 Samuel Álvarez</p>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 80 },
+    color: { value: "#38bdf8" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    line_linked: {
+      enable: true,
+      distance: 150,
+      color: "#38bdf8",
+      opacity: 0.3,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 2
+    }
+  },
+  interactivity: {
+    events: {
+      onhover: { enable: true, mode: "grab" }
+    }
+  }
+});
+</script>
 
 </body>
 </html>
