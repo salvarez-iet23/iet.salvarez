@@ -1,0 +1,7 @@
+:root{--bg:#0f172a;--text:#cbd5e1}
+body{font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text);margin:0;padding:20px}
+header h1{margin:0}
+section{margin-top:30px}
+form input, form textarea{width:100%;padding:8px;margin-top:6px;margin-bottom:12px;border-radius:6px;border:1px solid #223}
+button{padding:10px 14px;border-radius:8px;border:none;cursor:pointer}
+a{color:inherit;text-decoration:underline}
