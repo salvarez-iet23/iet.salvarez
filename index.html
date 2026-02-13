@@ -3,105 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOC Dashboard | Samuel Álvarez</title>
+<title>Samuel Álvarez | Portafolio</title>
 
 <link rel="stylesheet" href="styles.css">
-
 </head>
 
 <body>
 
-<!-- LOADER -->
-<div id="loader">Conectando al NOC...</div>
+<div id="loader">Inicializando sistema...</div>
 
 <canvas id="networkCanvas"></canvas>
 <canvas id="satelliteCanvas"></canvas>
-
 <div class="rf-cursor"></div>
 
-<!-- DASHBOARD -->
-<div class="dashboard">
+<header class="hero">
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
+<img src="FotoPerfil.jpg" class="profile-pic">
 
-<img src="FotoPerfil.jpg" class="profile">
+<h1>Samuel Álvarez López</h1>
+<p>Ingeniero en Electrónica y Telecomunicaciones</p>
 
-<h2>Samuel Álvarez</h2>
-<p>Telecom Engineer</p>
-
+<div class="hero-buttons">
 <a class="btn" href="CV.Samuel Alvarez Actualizado.pdf" target="_blank">Ver CV</a>
 
-</aside>
+<a class="btn linkedin"
+href="https://www.linkedin.com/in/samuel-alvarez-lopez-099151315/"
+target="_blank">LinkedIn</a>
+</div>
 
-<!-- PANEL CENTRAL -->
-<main class="main-panel">
+</header>
 
-<h1>Centro de Operaciones de Red</h1>
+<!-- EXPERIENCIA LABORAL -->
+<section>
+
+<h2>Experiencia Profesional</h2>
 
 <div class="logo-grid">
 
-<div class="logo-card" onclick="toggleCard(this)">
+<div class="logo-card" onclick="toggleWork(this)">
 <img src="LogoIneel.png">
 <h3>INEEL</h3>
 
-<div class="card-info">
+<div class="accordion">
 <ul>
-<li>IoT Sigfox</li>
+<li>Desarrollo IoT Sigfox</li>
 <li>Telemetría LPWAN</li>
-<li>Plataformas monitoreo</li>
+<li>Desarrollo plataformas monitoreo</li>
 </ul>
 </div>
-
 </div>
 
-<div class="logo-card" onclick="toggleCard(this)">
+<div class="logo-card" onclick="toggleWork(this)">
 <img src="LogoMtcenter.png">
 <h3>MTCENTER</h3>
 
-<div class="card-info">
+<div class="accordion">
 <ul>
-<li>CRM empresarial</li>
+<li>Administración CRM</li>
 <li>Soporte LAN/IP</li>
 <li>Dashboards métricos</li>
 </ul>
 </div>
-
 </div>
 
-<div class="logo-card" onclick="toggleCard(this)">
+<div class="logo-card" onclick="toggleWork(this)">
 <img src="LogoMundo.png">
 <h3>Grupo Mundo</h3>
 
-<div class="card-info">
+<div class="accordion">
 <ul>
 <li>Transmisiones IP</li>
 <li>Sistemas radio</li>
 <li>Audio profesional</li>
 </ul>
 </div>
-
 </div>
 
-<div class="logo-card" onclick="toggleCard(this)">
+<div class="logo-card" onclick="toggleWork(this)">
 <img src="logoAalcuadrado.png">
 <h3>A² Solutions</h3>
 
-<div class="card-info">
+<div class="accordion">
 <ul>
 <li>CCTV</li>
 <li>Redes Mesh</li>
 <li>Domótica</li>
 </ul>
 </div>
-
 </div>
 
 </div>
 
-</main>
+</section>
+
+<!-- FORMACION -->
+<section>
+
+<h2>Formación Académica</h2>
+
+<div class="logo-grid">
+
+<div class="logo-card" onclick="toggleSchool('upemor')">
+<img src="LogoUpemor.png">
+<h3>UPEMOR</h3>
+</div>
+
+<div class="logo-card" onclick="toggleSchool('cobaem')">
+<img src="LogoCOBAEM.png">
+<h3>COBAEM</h3>
+</div>
 
 </div>
+
+<div id="upemor" class="school-content">
+<ul>
+<li>Implementación red 5G SA</li>
+<li>Simulación radioenlaces</li>
+<li>Migración VoIP</li>
+<li>Automatización PLC Omron</li>
+</ul>
+</div>
+
+<div id="cobaem" class="school-content">
+<p>Bachillerato Física Matemática</p>
+</div>
+
+</section>
+
+<!-- HABILIDADES -->
+<section>
+
+<h2>Habilidades</h2>
+
+<h3>Profesionales</h3>
+<ul>
+<li>Trabajo en equipo</li>
+<li>Liderazgo</li>
+<li>Resolución problemas</li>
+<li>Adaptabilidad</li>
+</ul>
+
+<h3>Habilidades Técnicas</h3>
+<ul>
+<li>Redes TCP/IP</li>
+<li>Radiofrecuencia</li>
+<li>IoT y LPWAN</li>
+<li>Automatización PLC</li>
+</ul>
+
+<h3>Software y Herramientas Técnicas</h3>
+<ul>
+<li>Wireshark</li>
+<li>Proteus</li>
+<li>KiCad</li>
+<li>TIA Portal</li>
+<li>Radio Mobile</li>
+<li>AutoCAD</li>
+</ul>
+
+<h3>Idiomas</h3>
+<ul>
+<li>Español — Nativo</li>
+<li>Inglés — B1</li>
+</ul>
+
+</section>
+
+<!-- CONTACTO -->
+<section>
+
+<h2>Contacto</h2>
+
+<form id="contactForm">
+
+<input type="text" id="nombre" placeholder="Nombre" required>
+<input type="email" id="correo" placeholder="Correo" required>
+<textarea id="mensaje" placeholder="Mensaje" required></textarea>
+
+<button type="submit" class="btn">Enviar</button>
+
+</form>
+
+</section>
 
 <script src="telecom.js"></script>
 
