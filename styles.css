@@ -3,9 +3,33 @@ margin:0;
 font-family:Segoe UI;
 background:#020617;
 color:white;
-text-align:center;
+scroll-behavior:smooth;
 }
 
+/* NAVBAR */
+#navbar{
+position:fixed;
+top:0;
+width:100%;
+background:#020617;
+padding:10px;
+display:flex;
+justify-content:center;
+gap:25px;
+z-index:999;
+}
+
+#navbar a{
+color:white;
+text-decoration:none;
+padding:5px 10px;
+}
+
+#navbar a.active{
+border-bottom:2px solid cyan;
+}
+
+/* LOADER */
 #loader{
 position:fixed;
 width:100%;
@@ -15,48 +39,42 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:9999;
-color:#00c3ff;
-font-size:30px;
+color:cyan;
+font-size:28px;
 }
 
+/* SECTIONS */
+.section{
+padding:80px 20px;
+max-width:1000px;
+margin:auto;
+text-align:center;
+}
+
+/* PROFILE */
 .profile-pic{
 width:180px;
 height:180px;
 border-radius:50%;
 object-fit:cover;
 border:4px solid cyan;
-margin-top:40px;
 }
 
-.hero-buttons{
-margin-top:20px;
-}
-
+/* BUTTONS */
 .btn{
-padding:12px 20px;
-background:#00c3ff;
-color:black;
+background:cyan;
+padding:10px 18px;
 border-radius:8px;
 text-decoration:none;
+color:black;
 margin:5px;
-display:inline-block;
 }
 
-.linkedin{
-background:#0a66c2;
-color:white;
-}
-
-section{
-padding:60px 20px;
-max-width:900px;
-margin:auto;
-}
-
+/* LOGOS */
 .logo-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:25px;
+gap:20px;
 }
 
 .logo-card{
@@ -75,10 +93,12 @@ padding:10px;
 border-radius:10px;
 }
 
+/* ACCORDION */
 .accordion{
 max-height:0;
 overflow:hidden;
 transition:0.4s;
+text-align:left;
 }
 
 .logo-card.active .accordion{
@@ -86,8 +106,21 @@ max-height:300px;
 margin-top:10px;
 }
 
+/* LISTAS */
+.clean-list{
+list-style:none;
+padding:0;
+}
+
+.clean-list li{
+padding:6px 0;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* SCHOOL */
 .school-content{
 display:none;
+text-align:left;
 margin-top:20px;
 }
 
@@ -95,6 +128,15 @@ margin-top:20px;
 display:block;
 }
 
+/* SKILLS */
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:30px;
+text-align:left;
+}
+
+/* CONTACT */
 form{
 display:flex;
 flex-direction:column;
@@ -103,21 +145,13 @@ max-width:400px;
 margin:auto;
 }
 
-input, textarea{
+input,textarea{
 padding:10px;
 border-radius:6px;
 border:none;
 }
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
-}
-
+/* CURSOR */
 .rf-cursor{
 position:fixed;
 width:16px;
@@ -134,3 +168,11 @@ animation:pulse 1s infinite;
 100%{box-shadow:0 0 20px 10px transparent;}
 }
 
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+}
