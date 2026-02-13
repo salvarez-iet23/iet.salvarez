@@ -3,7 +3,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: "Inter", "Segoe UI", sans-serif;
+    font-family: "Inter","Segoe UI",sans-serif;
 }
 
 body{
@@ -39,8 +39,7 @@ body{
 
 /* ===== SECCIONES ===== */
 .section{
-    min-height:100vh;
-    padding:140px 12% 80px;
+    padding:120px 12% 60px;
 }
 
 /* ===== TITULOS ===== */
@@ -111,6 +110,7 @@ h3{
     max-width:850px;
     font-size:1.05rem;
     color:#555;
+    margin:auto;
 }
 
 /* ===== ACORDEON ===== */
@@ -118,6 +118,8 @@ h3{
     display:flex;
     flex-direction:column;
     gap:18px;
+    max-width:900px;
+    margin:auto;
 }
 
 .accordion-card{
@@ -146,10 +148,19 @@ h3{
     object-fit:contain;
 }
 
+/* ===== CUERPO ACORDEON ===== */
 .accordion-body{
-    padding:18px 25px;
+    padding:0 25px;
     border-top:1px solid #eee;
-    display:none;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s ease, padding .3s ease;
+}
+
+/* CLASE QUE ACTIVA TU JS */
+.accordion-card.active .accordion-body{
+    padding:18px 25px;
+    max-height:600px;
 }
 
 /* ===== LISTAS ===== */
@@ -173,6 +184,7 @@ h3{
 /* ===== CONTACTO ===== */
 form{
     max-width:480px;
+    margin:auto;
     display:flex;
     flex-direction:column;
     gap:14px;
@@ -223,12 +235,16 @@ button:hover{
 @media(max-width:768px){
 
     .section{
-        padding:130px 8%;
+        padding:110px 8% 60px;
     }
 
     #navbar{
         flex-wrap:wrap;
         gap:20px;
+    }
+
+    h1{
+        font-size:2.2rem;
     }
 
 }
