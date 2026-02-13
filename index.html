@@ -4,7 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Samuel Álvarez | Telecomunicaciones</title>
+
 <link rel="stylesheet" href="styles.css">
+
+<!-- Animaciones Scroll -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -13,23 +18,23 @@
 
 <header class="hero">
 
-<div class="hero-text">
+<div class="hero-text" data-aos="fade-right">
 <h1>Samuel Álvarez López</h1>
 <p>Ingeniero en Electrónica y Telecomunicaciones</p>
 <p>IoT · Redes · LPWAN · 5G · Automatización</p>
 
 <div class="hero-buttons">
-<a class="btn" href="SamuelAlvarez_CV.pdf" target="_blank">Ver CV</a>
+<a class="btn" href="CV.Samuel Alvarez Actualizado.pdf" target="_blank">Ver CV</a>
 <a class="btn linkedin" href="https://www.linkedin.com/in/samuel-alvarez-lopez-099151315/" target="_blank">LinkedIn</a>
 </div>
 
 </div>
 
-<img src="FotoPerfil.jpg" class="profile-pic">
+<img src="FotoPerfil.jpg" class="profile-pic" data-aos="fade-left">
 
 </header>
 
-<section>
+<section data-aos="fade-up">
 <h2>Sobre mí</h2>
 <p>
 Ingeniero especializado en telecomunicaciones, IoT y redes inalámbricas.
@@ -38,27 +43,27 @@ automatización industrial y despliegue de infraestructura de red.
 </p>
 </section>
 
-<section>
+<section data-aos="fade-up">
 <h2>Experiencia Profesional</h2>
 
 <div class="logo-grid">
 
-<div class="logo-card">
+<div class="logo-card" data-aos="zoom-in">
 <img src="LogoIneel.png">
 <p>INEEL — Desarrollo IoT y LPWAN</p>
 </div>
 
-<div class="logo-card">
+<div class="logo-card" data-aos="zoom-in">
 <img src="logoAalcuadrado.png">
 <p>A² Solutions — Integrador IoT y Redes</p>
 </div>
 
-<div class="logo-card">
+<div class="logo-card" data-aos="zoom-in">
 <img src="LogoMtcenter.png">
 <p>MTCENTER — Coordinador Técnico</p>
 </div>
 
-<div class="logo-card">
+<div class="logo-card" data-aos="zoom-in">
 <img src="LogoMundo.png">
 <p>Grupo Mundo Comunicaciones — Soporte Técnico</p>
 </div>
@@ -67,17 +72,17 @@ automatización industrial y despliegue de infraestructura de red.
 
 </section>
 
-<section>
+<section data-aos="fade-up">
 <h2>Formación Académica</h2>
 
 <div class="logo-grid">
 
-<div class="logo-card">
+<div class="logo-card" data-aos="zoom-in">
 <img src="LogoUpemor.png">
 <p>Ingeniería en Electrónica y Telecomunicaciones</p>
 </div>
 
-<div class="logo-card">
+<div class="logo-card" data-aos="zoom-in">
 <img src="LogoCOBAEM.png">
 <p>Bachillerato Físico Matemático</p>
 </div>
@@ -86,7 +91,7 @@ automatización industrial y despliegue de infraestructura de red.
 
 </section>
 
-<section>
+<section data-aos="fade-up">
 <h2>Habilidades Técnicas</h2>
 
 <ul>
@@ -103,6 +108,7 @@ automatización industrial y despliegue de infraestructura de red.
 <p>© 2026 Samuel Álvarez</p>
 </footer>
 
+<!-- PARTICULAS -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <script>
@@ -130,6 +136,16 @@ particlesJS("particles-js", {
       onhover: { enable: true, mode: "grab" }
     }
   }
+});
+</script>
+
+<!-- ANIMACIONES SCROLL -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+AOS.init({
+duration:1000,
+once:true
 });
 </script>
 
