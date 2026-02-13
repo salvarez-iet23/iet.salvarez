@@ -9,14 +9,38 @@ function toggleWork(card){
 card.classList.toggle("active");
 }
 
-/* FORMACION SOLO UNO */
+/* FORMACION */
 function toggleSchool(id){
-
 document.querySelectorAll(".school-content")
 .forEach(el=>el.classList.remove("show"));
 
 document.getElementById(id).classList.add("show");
 }
+
+/* SCROLLSPY */
+const sections=document.querySelectorAll(".section");
+const navLinks=document.querySelectorAll("#navbar a");
+
+window.addEventListener("scroll",()=>{
+let current="";
+
+sections.forEach(sec=>{
+const top=window.scrollY;
+const offset=sec.offsetTop-150;
+const height=sec.offsetHeight;
+
+if(top>=offset && top<offset+height){
+current=sec.getAttribute("id");
+}
+});
+
+navLinks.forEach(a=>{
+a.classList.remove("active");
+if(a.getAttribute("href")==="#"+current){
+a.classList.add("active");
+}
+});
+});
 
 /* CURSOR */
 const cursor=document.querySelector(".rf-cursor");
@@ -26,7 +50,7 @@ cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
-/* CONTACTO WHATS */
+/* CONTACT WHATS */
 document.getElementById("contactForm").addEventListener("submit",e=>{
 e.preventDefault();
 
@@ -48,7 +72,7 @@ net.height=window.innerHeight;
 
 let nodes=[];
 
-for(let i=0;i<60;i++){
+for(let i=0;i<50;i++){
 nodes.push({
 x:Math.random()*net.width,
 y:Math.random()*net.height,
