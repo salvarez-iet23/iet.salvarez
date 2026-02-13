@@ -42,7 +42,7 @@ a.classList.add("active");
 });
 });
 
-/* CURSOR */
+/* CURSOR RF */
 const cursor=document.querySelector(".rf-cursor");
 
 document.addEventListener("mousemove",e=>{
@@ -50,7 +50,7 @@ cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
-/* CONTACT WHATS */
+/* WHATS CONTACT */
 document.getElementById("contactForm").addEventListener("submit",e=>{
 e.preventDefault();
 
@@ -63,7 +63,7 @@ let texto=`Nombre: ${nombre}%0ACorreo: ${correo}%0AMensaje: ${mensaje}`;
 window.open(`https://wa.me/527771060169?text=${texto}`);
 });
 
-/* NETWORK */
+/* NETWORK BACKGROUND */
 const net=document.getElementById("networkCanvas");
 const ctx=net.getContext("2d");
 
@@ -72,7 +72,7 @@ net.height=window.innerHeight;
 
 let nodes=[];
 
-for(let i=0;i<50;i++){
+for(let i=0;i<40;i++){
 nodes.push({
 x:Math.random()*net.width,
 y:Math.random()*net.height,
@@ -81,9 +81,21 @@ vy:(Math.random()-0.5)
 });
 }
 
-function draw(){
-ctx.clearRect(0,0,net.width,net.height);
+/* SATELITE CANVAS */
+const sat=document.getElementById("satelliteCanvas");
+const sctx=sat.getContext("2d");
 
+sat.width=window.innerWidth;
+sat.height=window.innerHeight;
+
+let angle=0;
+
+function draw(){
+
+ctx.clearRect(0,0,net.width,net.height);
+sctx.clearRect(0,0,sat.width,sat.height);
+
+/* nodos */
 nodes.forEach(n=>{
 n.x+=n.vx;
 n.y+=n.vy;
@@ -93,6 +105,34 @@ ctx.arc(n.x,n.y,2,0,Math.PI*2);
 ctx.fillStyle="cyan";
 ctx.fill();
 });
+
+/* SATELITE ORBITA */
+let satX=sat.width/2 + Math.cos(angle)*300;
+let satY=sat.height/2 + Math.sin(angle)*150;
+
+sctx.fillStyle="white";
+sctx.beginPath();
+sctx.arc(satX,satY,6,0,Math.PI*2);
+sctx.fill();
+
+/* APUNTAR A NODOS */
+nodes.forEach(n=>{
+let dx=n.x-satX;
+let dy=n.y-satY;
+let dist=Math.sqrt(dx*dx+dy*dy);
+
+if(dist<220){
+
+sctx.beginPath();
+sctx.moveTo(satX,satY);
+sctx.lineTo(n.x,n.y);
+
+sctx.strokeStyle="rgba(0,255,255,0.2)";
+sctx.stroke();
+}
+});
+
+angle+=0.002;
 
 requestAnimationFrame(draw);
 }
