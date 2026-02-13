@@ -1,16 +1,24 @@
-/* LOADER */
 window.onload=()=>{
 setTimeout(()=>{
 document.getElementById("loader").style.display="none";
-},1800);
+},1500);
 };
 
-/* MULTI CARDS */
-function toggleCard(card){
+/* EXPERIENCIA MULTI */
+function toggleWork(card){
 card.classList.toggle("active");
 }
 
-/* CURSOR RF */
+/* FORMACION SOLO UNO */
+function toggleSchool(id){
+
+document.querySelectorAll(".school-content")
+.forEach(el=>el.classList.remove("show"));
+
+document.getElementById(id).classList.add("show");
+}
+
+/* CURSOR */
 const cursor=document.querySelector(".rf-cursor");
 
 document.addEventListener("mousemove",e=>{
@@ -18,8 +26,20 @@ cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
 
-/* NETWORK BACKGROUND */
+/* CONTACTO WHATS */
+document.getElementById("contactForm").addEventListener("submit",e=>{
+e.preventDefault();
 
+let nombre=document.getElementById("nombre").value;
+let correo=document.getElementById("correo").value;
+let mensaje=document.getElementById("mensaje").value;
+
+let texto=`Nombre: ${nombre}%0ACorreo: ${correo}%0AMensaje: ${mensaje}`;
+
+window.open(`https://wa.me/527771060169?text=${texto}`);
+});
+
+/* NETWORK */
 const net=document.getElementById("networkCanvas");
 const ctx=net.getContext("2d");
 
@@ -28,7 +48,7 @@ net.height=window.innerHeight;
 
 let nodes=[];
 
-for(let i=0;i<70;i++){
+for(let i=0;i<60;i++){
 nodes.push({
 x:Math.random()*net.width,
 y:Math.random()*net.height,
@@ -37,73 +57,20 @@ vy:(Math.random()-0.5)
 });
 }
 
-function drawNetwork(){
-
+function draw(){
 ctx.clearRect(0,0,net.width,net.height);
 
 nodes.forEach(n=>{
 n.x+=n.vx;
 n.y+=n.vy;
 
-if(n.x<0||n.x>net.width)n.vx*=-1;
-if(n.y<0||n.y>net.height)n.vy*=-1;
-
 ctx.beginPath();
 ctx.arc(n.x,n.y,2,0,Math.PI*2);
-ctx.fillStyle="#00c3ff";
+ctx.fillStyle="cyan";
 ctx.fill();
 });
 
-for(let i=0;i<nodes.length;i++){
-for(let j=i;j<nodes.length;j++){
-
-let dx=nodes[i].x-nodes[j].x;
-let dy=nodes[i].y-nodes[j].y;
-let dist=Math.sqrt(dx*dx+dy*dy);
-
-if(dist<120){
-ctx.beginPath();
-ctx.moveTo(nodes[i].x,nodes[i].y);
-ctx.lineTo(nodes[j].x,nodes[j].y);
-ctx.strokeStyle="rgba(0,195,255,0.15)";
-ctx.stroke();
-}
-}
+requestAnimationFrame(draw);
 }
 
-requestAnimationFrame(drawNetwork);
-}
-
-drawNetwork();
-
-/* SATELITE */
-
-const sat=document.getElementById("satelliteCanvas");
-const satCtx=sat.getContext("2d");
-
-sat.width=window.innerWidth;
-sat.height=window.innerHeight;
-
-let angle=0;
-
-function drawSatellite(){
-
-satCtx.clearRect(0,0,sat.width,sat.height);
-
-let x=sat.width/2+Math.cos(angle)*300;
-let y=sat.height/2+Math.sin(angle)*200;
-
-satCtx.fillStyle="white";
-satCtx.fillRect(x,y,22,10);
-
-satCtx.beginPath();
-satCtx.arc(x+10,y+5,50,0,Math.PI*2);
-satCtx.strokeStyle="rgba(0,195,255,0.25)";
-satCtx.stroke();
-
-angle+=0.004;
-
-requestAnimationFrame(drawSatellite);
-}
-
-drawSatellite();
+draw();
