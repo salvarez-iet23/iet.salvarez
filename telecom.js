@@ -1,16 +1,16 @@
-// telecom.js - Animaciones y funcionalidad interactiva
+// telecom.js - Animaciones y funcionalidad
 
 (function() {
-  // ---------- LOADER ----------
+  // LOADER
   const loader = document.getElementById('loader');
   setTimeout(() => { loader.classList.add('hidden'); }, 1800);
 
-  // ---------- ACORDEON (exclusivo) ----------
+  // ACORDEON (exclusivo)
   window.toggleAccordion = function(header) {
     const card = header.closest('.accordion-card');
     const body = card.querySelector('.accordion-body');
     const isActive = body.classList.contains('active');
-    // Cerrar todos los bodies dentro del mismo accordion container (para exclusividad)
+    
     const container = card.closest('.accordion-container');
     if (container) {
       container.querySelectorAll('.accordion-body').forEach(b => {
@@ -22,14 +22,14 @@
     }
   };
 
-  // ---------- CUSTOM CURSOR (wifi) ----------
+  // CURSOR PERSONALIZADO
   const cursor = document.getElementById('wifiCursor');
   document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   });
 
-  // ---------- ANIMACION DE FONDO (3 canvas) estilo NASA / constelaciones ----------
+  // ANIMACIONES DE FONDO
   const canvas = document.getElementById('networkCanvas');
   const ctx = canvas.getContext('2d');
   const satCanvas = document.getElementById('satelliteCanvas');
@@ -41,12 +41,15 @@
   function resizeCanvases() {
     width = window.innerWidth;
     height = window.innerHeight;
-    [canvas, satCanvas, specCanvas].forEach(c => { c.width = width; c.height = height; });
+    [canvas, satCanvas, specCanvas].forEach(c => { 
+      c.width = width; 
+      c.height = height; 
+    });
   }
   window.addEventListener('resize', resizeCanvases);
   resizeCanvases();
 
-  // Fondo de partículas (networkCanvas) estrellas y lineas suaves
+  // Partículas (red de estrellas)
   const particles = [];
   for (let i = 0; i < 80; i++) {
     particles.push({
@@ -60,16 +63,15 @@
 
   function drawNetwork() {
     ctx.clearRect(0, 0, width, height);
-    ctx.fillStyle = '#4a90e2';
+    
     for (let p of particles) {
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(100, 170, 255, 0.7)';
       ctx.fill();
     }
-    // lineas tenues entre partículas cercanas
-    ctx.strokeStyle = 'rgba(70, 130, 220, 0.2)';
-    ctx.lineWidth = 0.8;
+    
+    // Líneas entre partículas cercanas
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
@@ -88,21 +90,22 @@
   }
   drawNetwork();
 
-  // satéliteCanvas (órbitas) - lineas satelitales
+  // Órbita de satélite
   let angle = 0;
   function drawSatellite() {
     satCtx.clearRect(0, 0, width, height);
     const centerX = width / 2, centerY = height / 2;
     const radius = Math.min(width, height) * 0.35;
+    
     satCtx.beginPath();
     satCtx.ellipse(centerX, centerY, radius, radius*0.4, 0, 0, Math.PI*2);
     satCtx.strokeStyle = 'rgba(40, 140, 255, 0.25)';
     satCtx.lineWidth = 2;
     satCtx.stroke();
 
-    // satelite
     const satX = centerX + radius * Math.cos(angle);
     const satY = centerY + radius * 0.4 * Math.sin(angle);
+    
     satCtx.fillStyle = '#2f6eb0';
     satCtx.shadowColor = '#4a90e2';
     satCtx.shadowBlur = 15;
@@ -110,22 +113,22 @@
     satCtx.arc(satX, satY, 6, 0, 2*Math.PI);
     satCtx.fill();
     satCtx.shadowBlur = 0;
+    
     angle += 0.005;
     requestAnimationFrame(drawSatellite);
   }
   drawSatellite();
 
-  // spectrumCanvas (onda tipo espectro)
+  // Onda de espectro
   let phase = 0;
   function drawSpectrum() {
     specCtx.clearRect(0, 0, width, height);
     specCtx.beginPath();
     specCtx.strokeStyle = 'rgba(0, 200, 255, 0.15)';
     specCtx.lineWidth = 2;
-    const amp = 25;
-    const freq = 0.02;
+    
     for (let x = 0; x < width; x+=8) {
-      const y = height/2 + Math.sin(x * freq + phase) * amp + Math.cos(x * 0.01 + phase*2)*8;
+      const y = height/2 + Math.sin(x * 0.02 + phase) * 25 + Math.cos(x * 0.01 + phase*2) * 8;
       if (x === 0) specCtx.moveTo(x, y);
       else specCtx.lineTo(x, y);
     }
@@ -135,7 +138,7 @@
   }
   drawSpectrum();
 
-  // mover partículas de fondo network
+  // Mover partículas
   function moveParticles() {
     for (let p of particles) {
       p.x += p.vx;
@@ -148,4 +151,11 @@
     requestAnimationFrame(moveParticles);
   }
   moveParticles();
+
+  // FORMULARIO (simulación de envío)
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Mensaje enviado (modo demostración)');
+    this.reset();
+  });
 })();
