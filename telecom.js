@@ -1,71 +1,151 @@
-document.addEventListener("DOMContentLoaded",()=>{
+// telecom.js - Animaciones y funcionalidad interactiva
 
-setTimeout(()=>loader.style.display="none",1500);
+(function() {
+  // ---------- LOADER ----------
+  const loader = document.getElementById('loader');
+  setTimeout(() => { loader.classList.add('hidden'); }, 1800);
 
-window.toggleExclusive=function(header){
-let card=header.parentElement;
+  // ---------- ACORDEON (exclusivo) ----------
+  window.toggleAccordion = function(header) {
+    const card = header.closest('.accordion-card');
+    const body = card.querySelector('.accordion-body');
+    const isActive = body.classList.contains('active');
+    // Cerrar todos los bodies dentro del mismo accordion container (para exclusividad)
+    const container = card.closest('.accordion-container');
+    if (container) {
+      container.querySelectorAll('.accordion-body').forEach(b => {
+        b.classList.remove('active');
+      });
+    }
+    if (!isActive) {
+      body.classList.add('active');
+    }
+  };
 
-document.querySelectorAll(".accordion-card")
-.forEach(c=>{
-if(c!==card)c.classList.remove("active");
-});
+  // ---------- CUSTOM CURSOR (wifi) ----------
+  const cursor = document.getElementById('wifiCursor');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
 
-card.classList.toggle("active");
-};
+  // ---------- ANIMACION DE FONDO (3 canvas) estilo NASA / constelaciones ----------
+  const canvas = document.getElementById('networkCanvas');
+  const ctx = canvas.getContext('2d');
+  const satCanvas = document.getElementById('satelliteCanvas');
+  const satCtx = satCanvas.getContext('2d');
+  const specCanvas = document.getElementById('spectrumCanvas');
+  const specCtx = specCanvas.getContext('2d');
 
-/* WhatsApp */
-contactForm.addEventListener("submit",e=>{
-e.preventDefault();
+  let width, height;
+  function resizeCanvases() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    [canvas, satCanvas, specCanvas].forEach(c => { c.width = width; c.height = height; });
+  }
+  window.addEventListener('resize', resizeCanvases);
+  resizeCanvases();
 
-window.open(`https://wa.me/527771060169?text=Nombre:${nombre.value}%0ACorreo:${correo.value}%0AMensaje:${mensaje.value}`);
-});
+  // Fondo de partículas (networkCanvas) estrellas y lineas suaves
+  const particles = [];
+  for (let i = 0; i < 80; i++) {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.2,
+      size: Math.random() * 1.8 + 1
+    });
+  }
 
-/* ScrollSpy */
-let sections=document.querySelectorAll(".section");
-let links=document.querySelectorAll("#navbar a");
+  function drawNetwork() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = '#4a90e2';
+    for (let p of particles) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(100, 170, 255, 0.7)';
+      ctx.fill();
+    }
+    // lineas tenues entre partículas cercanas
+    ctx.strokeStyle = 'rgba(70, 130, 220, 0.2)';
+    ctx.lineWidth = 0.8;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 150) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(90, 160, 255, ${0.15 * (1 - dist/150)})`;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(drawNetwork);
+  }
+  drawNetwork();
 
-window.addEventListener("scroll",()=>{
-let current="";
+  // satéliteCanvas (órbitas) - lineas satelitales
+  let angle = 0;
+  function drawSatellite() {
+    satCtx.clearRect(0, 0, width, height);
+    const centerX = width / 2, centerY = height / 2;
+    const radius = Math.min(width, height) * 0.35;
+    satCtx.beginPath();
+    satCtx.ellipse(centerX, centerY, radius, radius*0.4, 0, 0, Math.PI*2);
+    satCtx.strokeStyle = 'rgba(40, 140, 255, 0.25)';
+    satCtx.lineWidth = 2;
+    satCtx.stroke();
 
-sections.forEach(sec=>{
-if(window.scrollY>=sec.offsetTop-150)current=sec.id;
-});
+    // satelite
+    const satX = centerX + radius * Math.cos(angle);
+    const satY = centerY + radius * 0.4 * Math.sin(angle);
+    satCtx.fillStyle = '#2f6eb0';
+    satCtx.shadowColor = '#4a90e2';
+    satCtx.shadowBlur = 15;
+    satCtx.beginPath();
+    satCtx.arc(satX, satY, 6, 0, 2*Math.PI);
+    satCtx.fill();
+    satCtx.shadowBlur = 0;
+    angle += 0.005;
+    requestAnimationFrame(drawSatellite);
+  }
+  drawSatellite();
 
-links.forEach(a=>{
-a.classList.remove("active");
-if(a.getAttribute("href")==="#"+current)a.classList.add("active");
-});
-});
+  // spectrumCanvas (onda tipo espectro)
+  let phase = 0;
+  function drawSpectrum() {
+    specCtx.clearRect(0, 0, width, height);
+    specCtx.beginPath();
+    specCtx.strokeStyle = 'rgba(0, 200, 255, 0.15)';
+    specCtx.lineWidth = 2;
+    const amp = 25;
+    const freq = 0.02;
+    for (let x = 0; x < width; x+=8) {
+      const y = height/2 + Math.sin(x * freq + phase) * amp + Math.cos(x * 0.01 + phase*2)*8;
+      if (x === 0) specCtx.moveTo(x, y);
+      else specCtx.lineTo(x, y);
+    }
+    specCtx.stroke();
+    phase += 0.03;
+    requestAnimationFrame(drawSpectrum);
+  }
+  drawSpectrum();
 
-/* Cursor WiFi */
-document.addEventListener("mousemove",e=>{
-document.querySelector(".wifi-cursor").style.left=e.clientX+"px";
-document.querySelector(".wifi-cursor").style.top=e.clientY+"px";
-});
-
-/* Fondo nodos */
-const net=networkCanvas.getContext("2d");
-networkCanvas.width=window.innerWidth;
-networkCanvas.height=window.innerHeight;
-
-let nodes=[];
-for(let i=0;i<35;i++){
-nodes.push({x:Math.random()*networkCanvas.width,
-y:Math.random()*networkCanvas.height});
-}
-
-function drawNodes(){
-net.clearRect(0,0,networkCanvas.width,networkCanvas.height);
-
-nodes.forEach(n=>{
-net.beginPath();
-net.arc(n.x,n.y,2,0,Math.PI*2);
-net.fillStyle="cyan";
-net.fill();
-});
-
-requestAnimationFrame(drawNodes);
-}
-drawNodes();
-
-});
+  // mover partículas de fondo network
+  function moveParticles() {
+    for (let p of particles) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = width;
+      if (p.x > width) p.x = 0;
+      if (p.y < 0) p.y = height;
+      if (p.y > height) p.y = 0;
+    }
+    requestAnimationFrame(moveParticles);
+  }
+  moveParticles();
+})();
