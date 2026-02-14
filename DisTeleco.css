@@ -195,7 +195,7 @@ h2 i {
 .linkedin { border-color: #0e76a8; }
 .contacto { border-color: #6cace4; }
 
-/* ACORDEON */
+/* ACORDEON - Modificado para respetar colores de logos */
 .accordion-container {
   display: flex;
   flex-direction: column;
@@ -226,12 +226,18 @@ h2 i {
   user-select: none;
 }
 
+/* IMPORTANTE: Los logos mantienen sus colores originales */
 .accordion-header img {
   width: 48px;
   height: 48px;
   object-fit: contain;
-  filter: brightness(0.9) invert(0.1) sepia(1) hue-rotate(180deg) saturate(2);
-  opacity: 0.9;
+  /* Eliminados los filtros que alteraban los colores */
+  opacity: 1;
+  transition: transform 0.3s ease;
+}
+
+.accordion-header:hover img {
+  transform: scale(1.05);
 }
 
 .accordion-header h3 {
