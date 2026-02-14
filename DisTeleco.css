@@ -1,35 +1,45 @@
-/* stylesDarkTech.css - TELECOM SKYLINE EDITION */
-/* Fondo: Ciudad nocturna con torres de telecomunicaciones y red digital */
+/* ===== ESTILO MINIMALISTA TELECOM - AZUL OSCURO ===== */
+/* Inspirado en anasmithit.es pero con identidad de telecomunicaciones */
 
-/* ===== VARIABLES ===== */
+/* ===== VARIABLES - PALETA AZUL OSCURO ===== */
 :root {
-    --deep-navy: #0a1120;           /* Azul profundo - cielo nocturno */
-    --city-glow: #1a2a3a;           /* Brillo de la ciudad */
-    --tower-metal: #b0c4de;          /* Metal para torres */
-    --network-blue: #4a9eff;         /* Azul para conexiones */
-    --network-glow: rgba(74, 158, 255, 0.3);
-    --text-light: #e6f0ff;
-    --text-dim: #a0b8d0;
+    --deep-blue: #0a1a2f;           /* Azul oscuro profundo - fondo principal */
+    --navy-blue: #0e2a3a;            /* Azul marino - para tarjetas */
+    --slate-blue: #1e3a5f;            /* Azul pizarra - acentos sutiles */
+    --text-light: #e6f0ff;            /* Texto principal casi blanco */
+    --text-soft: #b0c4de;              /* Texto secundario azul grisáceo */
+    --text-muted: #6c86a0;             /* Texto terciario más apagado */
+    --accent-blue: #3a86ff;             /* Azul brillante para acentos CTA */
+    --accent-glow: rgba(58, 134, 255, 0.2); /* Brillo para efectos */
+    --border-subtle: rgba(255, 255, 255, 0.08); /* Bordes sutiles */
     
-    --accent-primary: #3a86ff;       /* Azul principal */
-    --accent-secondary: #6c47ff;      /* Azul púrpura para variantes */
+    --font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    --font-text: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
     
-    --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
-    --font-text: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    --shadow-card: 0 10px 30px -15px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(58, 134, 255, 0.1);
+    --shadow-hover: 0 20px 40px -20px var(--accent-blue), 0 0 0 1px var(--accent-blue);
+    --transition: all 0.2s ease;
 }
 
-/* ===== FONDO PRINCIPAL ===== */
-body {
+/* ===== RESET Y BASE ===== */
+* {
     margin: 0;
     padding: 0;
-    font-family: var(--font-text);
-    background-color: var(--deep-navy);
-    color: var(--text-light);
-    position: relative;
-    min-height: 100vh;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
-/* Fondo con gradiente de cielo nocturno */
+body {
+    font-family: var(--font-text);
+    background-color: var(--deep-blue);
+    color: var(--text-light);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+}
+
+/* ===== FONDO SUTIL CON REJILLA TÉCNICA ===== */
 body::before {
     content: "";
     position: fixed;
@@ -37,525 +47,68 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, 
-        #0a1428 0%, 
-        #0e1a30 30%, 
-        #13213f 60%, 
-        #1b2b4a 100%
-    );
-    z-index: -3;
-}
-
-/* ===== CAPA DE CIUDAD (SILUETAS DE EDIFICIOS) ===== */
-.city-skyline {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 180px;
-    background: 
-        /* Edificios altos - perfil izquierdo */
-        linear-gradient(90deg, 
-            transparent 0%,
-            transparent 5%,
-            #0f1a2b 5%,
-            #0f1a2b 8%,
-            transparent 8%,
-            transparent 12%,
-            #121e32 12%,
-            #121e32 16%,
-            transparent 16%,
-            transparent 20%,
-            #0d1727 20%,
-            #0d1727 24%,
-            transparent 24%,
-            transparent 28%,
-            #142237 28%,
-            #142237 33%,
-            transparent 33%,
-            transparent 38%,
-            #101b2d 38%,
-            #101b2d 43%,
-            transparent 43%,
-            transparent 48%,
-            #16273f 48%,
-            #16273f 54%,
-            transparent 54%,
-            transparent 60%,
-            #1a2c45 60%,
-            #1a2c45 65%,
-            transparent 65%,
-            transparent 70%,
-            #0e1a2c 70%,
-            #0e1a2c 75%,
-            transparent 75%
-        ),
-        /* Edificios medianos - perfil derecho */
-        linear-gradient(45deg, 
-            #1f3452 0%, 
-            #1f3452 3%,
-            transparent 3%,
-            transparent 8%,
-            #243b5a 8%,
-            #243b5a 12%,
-            transparent 12%,
-            transparent 17%,
-            #1d314b 17%,
-            #1d314b 21%,
-            transparent 21%,
-            transparent 26%,
-            #1f3655 26%,
-            #1f3655 31%,
-            transparent 31%,
-            transparent 36%,
-            #182b42 36%,
-            #182b42 41%,
-            transparent 41%,
-            transparent 46%,
-            #1e3552 46%,
-            #1e3552 51%,
-            transparent 51%,
-            transparent 56%,
-            #253e5f 56%,
-            #253e5f 61%,
-            transparent 61%,
-            transparent 66%,
-            #1b314a 66%,
-            #1b314a 71%,
-            transparent 71%,
-            transparent 76%,
-            #213a59 76%,
-            #213a59 81%,
-            transparent 81%,
-            transparent 86%,
-            #1b2e48 86%,
-            #1b2e48 91%,
-            transparent 91%,
-            transparent 96%,
-            #1f3757 96%,
-            #1f3757 100%
-        );
-    background-size: 100% 100%, 100% 100%;
-    background-repeat: no-repeat;
-    background-position: bottom;
-    opacity: 0.7;
-    z-index: -2;
-    pointer-events: none;
-}
-
-/* ===== LUCES DE LA CIUDAD (ventanas iluminadas) ===== */
-.city-lights {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 180px;
     background-image: 
-        /* Ventanas amarillas/azules */
-        radial-gradient(circle at 10% 30%, #ffdd77 1px, transparent 1px),
-        radial-gradient(circle at 15% 45%, #7ac7ff 1px, transparent 1px),
-        radial-gradient(circle at 22% 25%, #ffdd77 1px, transparent 1px),
-        radial-gradient(circle at 28% 55%, #7ac7ff 1px, transparent 1px),
-        radial-gradient(circle at 35% 35%, #ffdd77 1px, transparent 1px),
-        radial-gradient(circle at 42% 40%, #7ac7ff 1px, transparent 1px),
-        radial-gradient(circle at 48% 20%, #ffdd77 1px, transparent 1px),
-        radial-gradient(circle at 55% 50%, #7ac7ff 1px, transparent 1px),
-        radial-gradient(circle at 62% 30%, #ffdd77 1px, transparent 1px),
-        radial-gradient(circle at 68% 45%, #7ac7ff 1px, transparent 1px),
-        radial-gradient(circle at 75% 25%, #ffdd77 1px, transparent 1px),
-        radial-gradient(circle at 82% 55%, #7ac7ff 1px, transparent 1px),
-        radial-gradient(circle at 88% 35%, #ffdd77 1px, transparent 1px),
-        radial-gradient(circle at 94% 40%, #7ac7ff 1px, transparent 1px);
-    background-size: 200px 100px;
-    background-repeat: repeat-x;
-    opacity: 0.5;
-    animation: twinkle 4s infinite alternate;
-    z-index: -1;
+        radial-gradient(circle at 20% 30%, rgba(58, 134, 255, 0.03) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(58, 134, 255, 0.02) 0%, transparent 40%),
+        linear-gradient(rgba(58, 134, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(58, 134, 255, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 80px 80px, 80px 80px;
     pointer-events: none;
+    z-index: 0;
 }
 
-@keyframes twinkle {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.8; }
-}
-
-/* ===== TORRES DE TELECOMUNICACIONES ===== */
-.towers-container {
-    position: fixed;
-    bottom: 150px;
-    left: 0;
-    width: 100%;
-    height: 400px;
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* Torre 1 - izquierda */
-.tower-1 {
-    position: absolute;
-    bottom: 0;
-    left: 15%;
-    width: 8px;
-    height: 280px;
-    background: linear-gradient(to top, 
-        rgba(176, 196, 222, 0.9),
-        rgba(200, 220, 240, 0.6)
-    );
-    transform-origin: bottom;
-    box-shadow: 0 0 20px rgba(74, 158, 255, 0.4);
-}
-
-.tower-1::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: -16px;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, 
-        rgba(74, 158, 255, 0.8) 0%,
-        transparent 70%
-    );
-    border-radius: 50%;
-}
-
-.tower-1 .cross {
-    position: absolute;
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent,
-        var(--tower-metal),
-        transparent
-    );
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.tower-1 .cross-1 { top: 60px; }
-.tower-1 .cross-2 { top: 120px; width: 80px; }
-.tower-1 .cross-3 { top: 180px; width: 100px; }
-.tower-1 .cross-4 { top: 240px; width: 70px; }
-
-/* Torre 2 - centro */
-.tower-2 {
-    position: absolute;
-    bottom: 0;
-    left: 45%;
-    width: 12px;
-    height: 350px;
-    background: linear-gradient(to top, 
-        rgba(200, 220, 240, 0.9),
-        rgba(160, 190, 220, 0.5)
-    );
-    transform-origin: bottom;
-    box-shadow: 0 0 30px rgba(74, 158, 255, 0.5);
-}
-
-.tower-2::before {
-    content: "";
-    position: absolute;
-    top: -25px;
-    left: -20px;
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle, 
-        rgba(74, 158, 255, 0.9) 0%,
-        transparent 70%
-    );
-    border-radius: 50%;
-}
-
-.tower-2 .antenna {
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.6);
-}
-
-.tower-2 .dish {
-    position: absolute;
-    top: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(176, 196, 222, 0.8);
-    border-radius: 50%;
-    box-shadow: 0 0 20px var(--network-blue);
-}
-
-.tower-2 .cross {
-    position: absolute;
-    width: 80px;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent,
-        var(--tower-metal),
-        transparent
-    );
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.tower-2 .cross-1 { top: 140px; }
-.tower-2 .cross-2 { top: 200px; width: 100px; }
-.tower-2 .cross-3 { top: 260px; width: 120px; }
-
-/* Torre 3 - derecha */
-.tower-3 {
-    position: absolute;
-    bottom: 0;
-    right: 20%;
-    width: 10px;
-    height: 320px;
-    background: linear-gradient(to top, 
-        rgba(190, 210, 235, 0.9),
-        rgba(170, 200, 230, 0.5)
-    );
-    transform-origin: bottom;
-    box-shadow: 0 0 25px rgba(74, 158, 255, 0.45);
-}
-
-.tower-3::before {
-    content: "";
-    position: absolute;
-    top: -22px;
-    left: -18px;
-    width: 45px;
-    height: 45px;
-    background: radial-gradient(circle, 
-        rgba(74, 158, 255, 0.85) 0%,
-        transparent 70%
-    );
-    border-radius: 50%;
-}
-
-.tower-3 .cross {
-    position: absolute;
-    width: 70px;
-    height: 2px;
-    background: linear-gradient(90deg, 
-        transparent,
-        var(--tower-metal),
-        transparent
-    );
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.tower-3 .cross-1 { top: 100px; }
-.tower-3 .cross-2 { top: 170px; width: 90px; }
-.tower-3 .cross-3 { top: 240px; width: 110px; }
-
-/* ===== RED DIGITAL (conexiones y puntos) ===== */
-.digital-network {
+/* ===== CANVAS SUTILES ===== */
+canvas {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
     pointer-events: none;
+    z-index: 1;
+    opacity: 0.1;
+    mix-blend-mode: lighten;
 }
 
-/* Líneas de conexión horizontales */
-.network-line {
-    position: absolute;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent,
-        var(--network-blue),
-        var(--network-glow),
-        var(--network-blue),
-        transparent
-    );
-    opacity: 0.3;
-    animation: pulse 4s infinite alternate;
-}
+#networkCanvas { z-index: 2; }
+#satelliteCanvas { z-index: 3; }
+#spectrumCanvas { z-index: 4; }
 
-.line-1 {
-    top: 30%;
-    left: 0;
-    width: 100%;
-    transform: rotate(2deg);
-}
-
-.line-2 {
-    top: 50%;
-    left: 0;
-    width: 100%;
-    transform: rotate(-1deg);
-}
-
-.line-3 {
-    top: 70%;
-    left: 0;
-    width: 100%;
-    transform: rotate(3deg);
-}
-
-/* Puntos de red (nodos) */
-.network-node {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: var(--network-blue);
-    border-radius: 50%;
-    box-shadow: 0 0 15px var(--network-blue);
-    animation: nodePulse 2s infinite alternate;
-}
-
-.node-1 { top: 25%; left: 10%; }
-.node-2 { top: 35%; left: 25%; }
-.node-3 { top: 45%; left: 40%; }
-.node-4 { top: 55%; left: 55%; }
-.node-5 { top: 65%; left: 70%; }
-.node-6 { top: 75%; left: 85%; }
-.node-7 { top: 30%; left: 80%; }
-.node-8 { top: 60%; left: 15%; }
-
-/* Líneas diagonales de conexión entre nodos */
-.network-connection {
-    position: absolute;
-    background: linear-gradient(90deg, 
-        var(--network-glow),
-        transparent
-    );
-    height: 1px;
-    transform-origin: left;
-    opacity: 0.2;
-}
-
-.conn-1 {
-    top: 28%;
-    left: 12%;
-    width: 150px;
-    transform: rotate(45deg);
-}
-
-.conn-2 {
-    top: 38%;
-    left: 27%;
-    width: 200px;
-    transform: rotate(60deg);
-}
-
-.conn-3 {
-    top: 48%;
-    left: 42%;
-    width: 180px;
-    transform: rotate(30deg);
-}
-
-.conn-4 {
-    top: 58%;
-    left: 57%;
-    width: 220px;
-    transform: rotate(75deg);
-}
-
-.conn-5 {
-    top: 68%;
-    left: 72%;
-    width: 160px;
-    transform: rotate(15deg);
-}
-
-/* ===== ONDAS DE SEÑAL (5G) ===== */
-.signal-waves {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-.wave {
-    position: absolute;
-    border: 2px solid rgba(74, 158, 255, 0.1);
-    border-radius: 50%;
-    animation: expandWave 8s infinite;
-}
-
-.wave-1 {
-    top: 40%;
-    right: 15%;
-    width: 100px;
-    height: 100px;
-}
-
-.wave-2 {
-    top: 45%;
-    right: 10%;
-    width: 200px;
-    height: 200px;
-    animation-delay: 2s;
-}
-
-.wave-3 {
-    top: 50%;
-    right: 5%;
-    width: 300px;
-    height: 300px;
-    animation-delay: 4s;
-}
-
-@keyframes expandWave {
-    0% {
-        transform: scale(0.5);
-        opacity: 0.5;
-        border-color: rgba(74, 158, 255, 0.3);
-    }
-    100% {
-        transform: scale(2);
-        opacity: 0;
-        border-color: rgba(74, 158, 255, 0);
-    }
-}
-
-@keyframes pulse {
-    0% { opacity: 0.1; }
-    100% { opacity: 0.4; }
-}
-
-@keyframes nodePulse {
-    0% { transform: scale(1); opacity: 0.5; }
-    100% { transform: scale(1.5); opacity: 1; }
-}
-
-/* ===== LOADER ===== */
+/* ===== LOADER MINIMALISTA ===== */
 #loader {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(10, 20, 35, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 30px;
-    padding: 40px 60px;
+    background: var(--navy-blue);
+    border-radius: 16px;
+    padding: 32px 48px;
     z-index: 10000;
     text-align: center;
-    border: 1px solid rgba(74, 158, 255, 0.3);
-    box-shadow: 0 0 50px rgba(74, 158, 255, 0.2);
-    animation: fadeOut 2.5s ease forwards;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: fadeOut 2s ease forwards;
 }
 
 #loader::after {
     content: "";
     display: block;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin: 20px auto 0;
-    border: 3px solid rgba(74, 158, 255, 0.3);
-    border-top-color: var(--network-blue);
+    border: 2px solid rgba(58, 134, 255, 0.2);
+    border-top-color: var(--accent-blue);
     border-radius: 50%;
-    animation: spin 1s infinite linear;
+    animation: spin 0.8s infinite linear;
+}
+
+#loader span {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--text-soft);
 }
 
 @keyframes spin {
@@ -563,54 +116,56 @@ body::before {
 }
 
 @keyframes fadeOut {
-    0% { opacity: 0; }
-    10% { opacity: 1; }
-    80% { opacity: 1; }
+    0% { opacity: 1; }
+    70% { opacity: 1; }
     100% { opacity: 0; visibility: hidden; }
 }
 
-/* ===== NAVBAR ===== */
+/* ===== NAVBAR ESTILO APPLE ===== */
 #navbar {
     position: fixed;
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(15, 25, 40, 0.8);
+    background: rgba(14, 42, 58, 0.8);
     backdrop-filter: blur(20px);
-    border-radius: 40px;
-    padding: 8px 20px;
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 100px;
+    padding: 8px 16px;
     display: flex;
-    gap: 8px;
+    gap: 4px;
     z-index: 1000;
-    border: 1px solid rgba(74, 158, 255, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 #navbar a {
-    color: #a0b8d0;
+    color: var(--text-soft);
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
-    padding: 10px 16px;
-    border-radius: 30px;
-    transition: all 0.2s ease;
+    padding: 10px 20px;
+    border-radius: 100px;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     gap: 8px;
+    letter-spacing: 0.2px;
 }
 
 #navbar a i {
     font-size: 1rem;
-    color: #4a6a8a;
+    color: var(--text-muted);
+    transition: var(--transition);
 }
 
 #navbar a:hover {
-    background: rgba(74, 158, 255, 0.15);
+    background: rgba(58, 134, 255, 0.1);
     color: white;
 }
 
 #navbar a:hover i {
-    color: var(--network-blue);
+    color: var(--accent-blue);
 }
 
 /* ===== SECCIONES ===== */
@@ -625,23 +180,457 @@ body::before {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    background: rgba(10, 20, 35, 0.3);
-    backdrop-filter: blur(5px);
-    border-radius: 30px;
-    margin-bottom: 20px;
 }
 
 .section h2 {
     font-family: var(--font-display);
     font-size: 2.2rem;
     font-weight: 600;
-    letter-spacing: -0.5px;
-    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+    margin-bottom: 60px;
     color: white;
-    text-shadow: 0 0 20px rgba(74, 158, 255, 0.5);
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.section h2::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-blue);
+    border-radius: 2px;
 }
 
 .section h2 i {
-    color: var(--network-blue);
+    color: var(--accent-blue);
     margin-right: 12px;
+    font-size: 2rem;
+}
+
+/* ===== PERFIL ===== */
+#perfil {
+    text-align: center;
+    position: relative;
+}
+
+/* Anillo orbital sutil */
+#perfil::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(58, 134, 255, 0.15);
+    border-radius: 50%;
+    animation: orbit 20s linear infinite;
+}
+
+@keyframes orbit {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-blue);
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+    box-shadow: var(--shadow-card);
+}
+
+#perfil h1 {
+    font-family: var(--font-display);
+    font-size: 3.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    color: white;
+}
+
+#perfil p {
+    font-size: 1.3rem;
+    color: var(--text-soft);
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: var(--transition);
+    border: 1.5px solid transparent;
+    letter-spacing: 0.3px;
+    background: var(--navy-blue);
+    color: var(--text-light);
+    border-color: var(--border-subtle);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-blue);
+    box-shadow: 0 10px 20px -10px var(--accent-blue);
+}
+
+.btn.linkedin {
+    background: var(--accent-blue);
+    color: white;
+    border-color: var(--accent-blue);
+}
+
+.btn.linkedin:hover {
+    background: #2a6fd1;
+    box-shadow: 0 10px 20px -8px var(--accent-blue);
+}
+
+.btn.contacto {
+    background: transparent;
+    border-color: var(--border-subtle);
+}
+
+.btn.contacto:hover {
+    background: rgba(58, 134, 255, 0.1);
+    border-color: var(--accent-blue);
+}
+
+/* ===== PERFIL PROFESIONAL ===== */
+.perfil-text {
+    max-width: 900px;
+    background: var(--navy-blue);
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-card);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-soft);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* ===== ACORDEONES ESTILO ANA SMITH ===== */
+.accordion-container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.accordion-card {
+    background: var(--navy-blue);
+    border-radius: 20px;
+    border: 1px solid var(--border-subtle);
+    overflow: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.accordion-card:hover {
+    border-color: var(--accent-blue);
+    box-shadow: var(--shadow-hover);
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 28px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.02);
+    transition: var(--transition);
+}
+
+.accordion-header:hover {
+    background: rgba(58, 134, 255, 0.05);
+}
+
+.accordion-header img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+}
+
+.accordion-header div {
+    flex: 1;
+}
+
+.accordion-header h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+    letter-spacing: -0.3px;
+}
+
+.accordion-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.accordion-card.active .accordion-body {
+    max-height: 500px;
+    padding: 0 28px 24px 108px; /* 108px = imagen(60px) + gap(20px) + padding */
+}
+
+.clean-list {
+    list-style: none;
+}
+
+.clean-list li {
+    padding: 8px 0;
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.clean-list li::before {
+    content: "▹";
+    color: var(--accent-blue);
+    font-size: 1.2rem;
+}
+
+/* ===== HABILIDADES ===== */
+#habilidades {
+    text-align: center;
+}
+
+#habilidades h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+    margin: 40px 0 20px;
+    letter-spacing: -0.3px;
+}
+
+#habilidades .clean-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#habilidades .clean-list li {
+    background: var(--navy-blue);
+    border: 1px solid var(--border-subtle);
+    border-radius: 40px;
+    padding: 8px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-soft);
+    transition: var(--transition);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+#habilidades .clean-list li::before {
+    display: none;
+}
+
+#habilidades .clean-list li:hover {
+    border-color: var(--accent-blue);
+    color: white;
+    transform: translateY(-2px);
+    background: rgba(58, 134, 255, 0.1);
+}
+
+/* ===== FORMULARIO CONTACTO ===== */
+#contactForm {
+    width: 100%;
+    max-width: 600px;
+    background: var(--navy-blue);
+    border-radius: 24px;
+    border: 1px solid var(--border-subtle);
+    padding: 40px;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+#contactForm input,
+#contactForm textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    color: white;
+    font-family: var(--font-text);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+#contactForm textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+#contactForm button {
+    width: 100%;
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-display);
+    letter-spacing: 0.5px;
+}
+
+#contactForm button:hover {
+    background: #2a6fd1;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -8px var(--accent-blue);
+}
+
+/* ===== MEDIDOR DE SEÑAL SUTIL (detalle telecom) ===== */
+.signal-meter {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--navy-blue);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 40px;
+    padding: 10px 20px;
+    border: 1px solid var(--border-subtle);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    box-shadow: var(--shadow-card);
+}
+
+.signal-meter span:first-child {
+    font-family: var(--font-mono);
+    color: var(--accent-blue);
+    font-weight: 600;
+}
+
+.signal-meter .bars {
+    display: flex;
+    gap: 4px;
+    align-items: flex-end;
+}
+
+.signal-meter .bar {
+    width: 4px;
+    height: 16px;
+    background: var(--text-muted);
+    border-radius: 2px;
+    transition: height 0.2s ease;
+}
+
+.signal-meter .bar:nth-child(1) { height: 8px; background: var(--accent-blue); }
+.signal-meter .bar:nth-child(2) { height: 12px; background: var(--accent-blue); }
+.signal-meter .bar:nth-child(3) { height: 16px; background: var(--accent-blue); }
+.signal-meter .bar:nth-child(4) { height: 20px; background: var(--accent-blue); }
+.signal-meter .bar:nth-child(5) { height: 24px; background: var(--accent-blue); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    #navbar {
+        width: 90%;
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 30px;
+        padding: 8px;
+    }
+    
+    #navbar a {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+    
+    .section {
+        padding: 80px 16px;
+    }
+    
+    .section h2 {
+        font-size: 1.8rem;
+    }
+    
+    #perfil h1 {
+        font-size: 2.4rem;
+    }
+    
+    #perfil p {
+        font-size: 1.1rem;
+    }
+    
+    .perfil-text {
+        padding: 24px;
+        font-size: 1rem;
+    }
+    
+    .accordion-header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .accordion-card.active .accordion-body {
+        padding: 0 20px 20px 20px;
+    }
+    
+    #perfil::before {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .signal-meter {
+        bottom: 20px;
+        right: 20px;
+        padding: 8px 15px;
+    }
 }
