@@ -15,9 +15,79 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 <div id="loader">Inicializando sistema NOC...</div>
 
+<!-- Canvas existentes (los dejamos como estaban) -->
 <canvas id="networkCanvas"></canvas>
 <canvas id="satelliteCanvas"></canvas>
 <canvas id="spectrumCanvas"></canvas>
+
+<!-- ===== NUEVO FONDO TELECOM ===== -->
+<!-- Ciudad y luces -->
+<div class="city-skyline"></div>
+<div class="city-lights"></div>
+
+<!-- Torres de telecomunicaciones -->
+<div class="towers-container">
+    <div class="tower-1">
+        <div class="cross cross-1"></div>
+        <div class="cross cross-2"></div>
+        <div class="cross cross-3"></div>
+        <div class="cross cross-4"></div>
+    </div>
+    <div class="tower-2">
+        <div class="cross cross-1"></div>
+        <div class="cross cross-2"></div>
+        <div class="cross cross-3"></div>
+        <div class="antenna"></div>
+        <div class="dish"></div>
+    </div>
+    <div class="tower-3">
+        <div class="cross cross-1"></div>
+        <div class="cross cross-2"></div>
+        <div class="cross cross-3"></div>
+    </div>
+</div>
+
+<!-- Red digital (puntos y líneas) -->
+<div class="digital-network">
+    <div class="network-line line-1"></div>
+    <div class="network-line line-2"></div>
+    <div class="network-line line-3"></div>
+    
+    <div class="network-node node-1"></div>
+    <div class="network-node node-2"></div>
+    <div class="network-node node-3"></div>
+    <div class="network-node node-4"></div>
+    <div class="network-node node-5"></div>
+    <div class="network-node node-6"></div>
+    <div class="network-node node-7"></div>
+    <div class="network-node node-8"></div>
+    
+    <div class="network-connection conn-1"></div>
+    <div class="network-connection conn-2"></div>
+    <div class="network-connection conn-3"></div>
+    <div class="network-connection conn-4"></div>
+    <div class="network-connection conn-5"></div>
+</div>
+
+<!-- Ondas 5G -->
+<div class="signal-waves">
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="wave wave-3"></div>
+</div>
+
+<!-- Medidor de señal (detalle sutil) -->
+<div class="signal-meter">
+    <span class="signal-label">SIGNAL</span>
+    <div class="bars">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <span>5G</span>
+</div>
 
 <div class="wifi-cursor"></div>
 
@@ -244,11 +314,3 @@ adaptable y con gran capacidad para asimilar nuevas tecnologías rápidamente. B
 
 </body>
 </html>
-
-
-
-
-
-
-
-
