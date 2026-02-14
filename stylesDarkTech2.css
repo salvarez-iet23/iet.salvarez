@@ -1,0 +1,510 @@
+/* stylesDarkTech.css - Versión Rediseñada (Sin cambiar HTML) */
+
+/* ===== VARIABLES Y RESET ===== */
+:root {
+    --primary-color: #00e0ff;      /* Cian neón, como fibra óptica */
+    --secondary-color: #7b2eda;     /* Púrpura, como una frecuencia secundaria */
+    --bg-dark: #0a0c0f;             /* Fondo casi negro, base de hardware */
+    --bg-card: #14181c;              /* Fondo de tarjetas, un gris muy oscuro */
+    --text-light: #e0e5ec;
+    --text-dim: #8b949e;
+    --border-glow: rgba(0, 224, 255, 0.3);
+    --font-mono: 'Courier New', Courier, monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-mono);
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ===== EFECTOS DE FONDO (CANVAS) ===== */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Para poder hacer clic a través de ellos */
+    z-index: 0;
+}
+
+/* Capas de canvas para diferentes efectos */
+#networkCanvas { z-index: 1; opacity: 0.5; }      /* Malla de fondo */
+#satelliteCanvas { z-index: 2; opacity: 0.3; }    /* Puntos satelitales */
+#spectrumCanvas { z-index: 3; opacity: 0.2; }     /* Líneas de espectro */
+
+/* ===== LOADER ===== */
+#loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 0 15px var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 20px 40px;
+    background: rgba(10, 12, 15, 0.9);
+    z-index: 1000;
+    animation: pulse 1.5s infinite alternate, fadeOut 0.5s ease 2.5s forwards;
+    letter-spacing: 3px;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; box-shadow: 0 0 5px var(--primary-color); }
+    100% { opacity: 1; box-shadow: 0 0 30px var(--primary-color); }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+/* ===== CURSOR PERSONALIZADO ===== */
+.wifi-cursor {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background-color 0.2s;
+    box-shadow: 0 0 15px var(--primary-color);
+    display: none; /* Oculto por defecto, se activa con JS */
+}
+
+/* ===== BARRA DE NAVEGACIÓN ===== */
+#navbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 24, 28, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glow);
+    border-radius: 50px;
+    padding: 10px 25px;
+    display: flex;
+    gap: 20px;
+    z-index: 100;
+    box-shadow: 0 0 20px rgba(0, 224, 255, 0.2);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#navbar a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#navbar a i {
+    font-size: 1rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+#navbar a:hover {
+    color: var(--primary-color);
+    background: rgba(0, 224, 255, 0.1);
+    text-shadow: 0 0 8px var(--primary-color);
+}
+
+#navbar a:hover i {
+    transform: scale(1.2);
+}
+
+/* ===== SECCIONES GENERALES ===== */
+.section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 80px 20px;
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid rgba(0, 224, 255, 0.1);
+}
+
+.section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 0 0 10px var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.section h2 i {
+    margin-right: 15px;
+    color: var(--secondary-color);
+}
+
+/* ===== PERFIL (SECTION #1) ===== */
+#perfil {
+    text-align: center;
+}
+
+.profile-pic {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 50px rgba(0, 224, 255, 0.5);
+    margin-bottom: 30px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 0 80px var(--primary-color);
+}
+
+#perfil h1 {
+    font-size: 3.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px var(--text-light);
+}
+
+#perfil p {
+    font-size: 1.5rem;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    border-right: 2px solid var(--primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--primary-color); }
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 35px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    background: transparent;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 224, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    box-shadow: 0 0 30px var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.btn.linkedin {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.btn.linkedin:hover {
+    background: var(--secondary-color);
+    color: var(--bg-dark);
+    box-shadow: 0 0 30px var(--secondary-color);
+}
+
+/* ===== PERFIL PROFESIONAL ===== */
+.perfil-text {
+    max-width: 900px;
+    text-align: center;
+    font-size: 1.2rem;
+    background: rgba(20, 24, 28, 0.6);
+    backdrop-filter: blur(5px);
+    padding: 40px;
+    border-radius: 20px;
+    border-left: 5px solid var(--primary-color);
+    border-right: 5px solid var(--secondary-color);
+    box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
+    line-height: 1.8;
+}
+
+/* ===== ACORDEONES (Tu estructura intacta, solo estilos) ===== */
+.accordion-container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.accordion-card {
+    background: rgba(20, 24, 28, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 224, 255, 0.2);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5);
+}
+
+.accordion-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 30px rgba(0, 224, 255, 0.3);
+    transform: translateX(10px); /* Efecto sutil de movimiento */
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 25px;
+    cursor: pointer;
+    background: linear-gradient(90deg, transparent, rgba(0, 224, 255, 0.1), transparent);
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.accordion-header img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px var(--primary-color));
+}
+
+.accordion-header h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.accordion-header p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+
+/* Estilo cuando el acordeón está activo (la lógica la maneja tu JS) */
+.accordion-card.active .accordion-header {
+    border-bottom-color: var(--primary-color);
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0 25px;
+}
+
+.accordion-card.active .accordion-body {
+    max-height: 500px; /* Ajusta según el contenido */
+    padding: 20px 25px;
+}
+
+.clean-list {
+    list-style: none;
+}
+
+.clean-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(123, 46, 218, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.clean-list li::before {
+    content: "▹";
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+}
+
+/* ===== HABILIDADES (Mejora visual) ===== */
+#habilidades {
+    text-align: center;
+}
+
+#habilidades h3 {
+    color: var(--primary-color);
+    margin: 30px 0 15px;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+}
+
+#habilidades .clean-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    max-width: 800px;
+}
+
+#habilidades .clean-list li {
+    background: rgba(123, 46, 218, 0.2);
+    border: 1px solid var(--secondary-color);
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#habilidades .clean-list li::before {
+    display: none;
+}
+
+#habilidades .clean-list li:hover {
+    background: var(--secondary-color);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* ===== CONTACTO ===== */
+#contactForm {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(20, 24, 28, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--border-glow);
+}
+
+#contactForm input,
+#contactForm textarea {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--text-dim);
+    padding: 15px 20px;
+    color: var(--text-light);
+    font-family: var(--font-mono);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+#contactForm textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+#contactForm button {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+#contactForm button:hover {
+    background: var(--primary-color);
+    color: var(--bg-dark);
+    box-shadow: 0 0 30px var(--primary-color);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    #navbar {
+        width: 90%;
+        gap: 5px;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    #navbar a {
+        font-size: 0.7rem;
+    }
+
+    #perfil h1 {
+        font-size: 2.2rem;
+    }
+
+    #perfil p {
+        font-size: 1rem;
+        white-space: normal;
+        animation: none;
+        border-right: none;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+    }
+
+    .accordion-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .accordion-card:hover {
+        transform: translateX(0); /* Quita el efecto en móviles */
+    }
+}
